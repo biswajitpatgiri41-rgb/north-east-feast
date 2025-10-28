@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>North East Feast — IIT Patna</title>
+  <meta name="description" content="North East Feast at IIT Patna — culture, food, traditions." />
+  
+  <style>
+    /* --- COMMON & INDEX PAGE STYLES --- */
+    :root{
+      --accent:#0f766e;
+      --muted:#6b7280;
+      --bg:#fbfcfd;
+      --card:#ffffff;
+      --glass: rgba(255,255,255,0.7);
+      --radius:14px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background: linear-gradient(180deg, #f3f9f8 0%, #ffffff 100%);
+      color:#0f172a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      padding:20px 28px;
+      max-width:1100px;
+      margin:0 auto;
+    }
+    .logo{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      text-decoration:none;
+      color:inherit;
+    }
+    .logo .mark{
+      width:56px;
+      height:56px;
+      border-radius:12px;
+      background: linear-gradient(135deg,#0ea5a4,#10b981);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:white;
+      font-weight:700;
+      font-size:18px;
+      box-shadow:0 6px 18px rgba(16,185,129,0.14);
+    }
+    nav a{
+      text-decoration:none;
+      color:var(--muted);
+      margin-left:18px;
+      font-weight:600;
+    }
+    nav a.cta{
+      background:var(--accent);
+      color:white;
+      padding:8px 14px;
+      border-radius:10px;
+      box-shadow:0 6px 18px rgba(15,118,110,0.12);
+    }
+    main{
+      max-width:1100px;
+      margin:18px auto;
+      padding:20px;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:24px;
+      align-items:start;
+    }
+    .hero{
+      background:linear-gradient(180deg, rgba(15,118,110,0.04), rgba(16,185,129,0.02));
+      padding:28px;
+      border-radius:var(--radius);
+      box-shadow:0 8px 30px rgba(13, 60, 59, 0.06);
+    }
+    .greet{
+      display:flex;
+      gap:16px;
+      align-items:center;
+    }
+    .greet h1{
+      margin:0;
+      font-size:30px;
+      letter-spacing:0.2px;
+    }
+    .badge{
+      font-size:13px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:var(--card);
+      box-shadow:0 6px 20px rgba(2,6,23,0.04);
+      color:var(--accent);
+      font-weight:700;
+    }
+    .lead{
+      margin-top:12px;
+      color:var(--muted);
+    }
+    .card{
+      background:var(--card);
+      padding:18px;
+      border-radius:12px;
+      box-shadow:0 10px 30px rgba(2,6,23,0.04);
+    }
+    .facts{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-top:14px;
+    }
+    .fact{
+      padding:12px;
+      border-radius:10px;
+      background:linear-gradient(180deg, rgba(16,185,129,0.03), rgba(15,118,110,0.02));
+      border:1px solid rgba(15,118,110,0.06);
+      font-weight:600;
+    }
+    .side{
+      position:sticky;
+      top:20px;
+      align-self:start;
+    }
+    .event-meta{
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .meta-row{display:flex;justify-content:space-between;align-items:center}
+    .meta-row strong{font-size:14px}
+    .cta-btn{
+      display:inline-block;
+      width:100%;
+      text-align:center;
+      padding:12px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:700;
+      margin-top:8px;
+      background:linear-gradient(90deg,#06b6d4,#0ea5a4);
+      color:white;
+    }
+    footer{
+      max-width:1100px;
+      margin:26px auto;
+      padding:16px 20px;
+      color:var(--muted);
+      font-size:14px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    /* responsive */
+    @media (max-width:960px){
+      main{grid-template-columns:1fr; padding:14px;}
+      .facts{grid-template-columns:1fr}
+    }
+    /* small utilities */
+    .muted{color:var(--muted)}
+    ul.bullets{padding-left:18px;margin:8px 0}
+
+
+    /* --- REGISTRATION PAGE STYLES (Adjusted for co-existence) --- */
+    .reg-page-wrapper{ /* New wrapper to apply body styles selectively */
+      max-width:920px;
+      margin:12px auto;
+      background:white;
+      padding:18px;
+      border-radius:16px;
+      box-shadow:0 12px 40px rgba(2,6,23,0.06);
+      min-height: calc(100vh - 40px); /* adjusted for overall padding */
+    }
+    .reg-header{ /* adjusted from original header */
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:12px;
+    }
+    .reg-header a{ color:var(--muted); text-decoration:none; font-weight:600}
+    .reg-header h2{margin:0;font-size:22px}
+    form{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+    label{
+      display:block;
+      font-size:13px;
+      margin-bottom:6px;
+      color:var(--muted);
+      font-weight:700;
+    }
+    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+      width:100%;
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid rgba(15,118,110,0.09);
+      outline:none;
+      font-size:14px;
+      background:rgba(245,247,246,1);
+    }
+    textarea{min-height:120px; resize:vertical}
+    .full{grid-column:1/-1}
+    .actions{
+      display:flex;
+      gap:12px;
+      justify-content:flex-end;
+      margin-top:12px;
+    }
+    button{
+      padding:10px 14px;
+      border-radius:10px;
+      border:0;
+      font-weight:800;
+      cursor:pointer;
+    }
+    button.primary{ background:linear-gradient(90deg,#06b6d4,#0ea5a4); color:#fff }
+    button.ghost{ background:transparent; color:var(--muted); border:1px solid rgba(15,118,110,0.06) }
+    .note{font-size:13px;color:var(--muted); margin-top:10px}
+    .success{
+      padding:12px; border-radius:10px; background:linear-gradient(180deg,#ecfdf5,#f0fdf4);
+      border:1px solid rgba(16,185,129,0.12); margin-top:12px; color:#064e3b; display:none;
+    }
+    @media (max-width:760px){
+      form {grid-template-columns:1fr}
+      .actions{justify-content:stretch; flex-direction:column}
+    }
+    /* Simple page toggle utility */
+    .page-hidden { display: none !important; }
+
+  </style>
+</head>
+<body>
+  <div id="index-page">
+    <header>
+      <a class="logo" href="#index-page" onclick="showPage('index-page')">
+        <div class="mark">NE</div>
+        <div>
+          <div style="font-weight:800">North East Feast</div>
+          <div style="font-size:12px;color:var(--muted)">IIT Patna — Celebration of Culture & Cuisine</div>
+        </div>
+      </a>
+      <nav>
+        <a href="#index-page" onclick="showPage('index-page')">Home</a>
+        <a href="#register-page" class="cta" onclick="showPage('register-page')">Register</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero card" aria-labelledby="hero-title">
+        <div class="greet">
+          <div style="flex:1">
+            <h1 id="hero-title">Kumbriksunding — Welcome to the North East Feast</h1>
+            <div class="lead">Join us at IIT Patna for a colourful celebration of the traditions, food, music and people of India's North Eastern states.</div>
+          </div>
+          <div class="badge">Free Entry · All Welcome</div>
+        </div>
+
+        <div style="margin-top:18px">
+          <h3 style="margin:0 0 8px 0">About the Event</h3>
+          <p class="muted">
+            The North East Feast is a cultural showcase celebrating food, arts, and traditions from the eight northeastern states.
+            Expect traditional dishes, folk performances, arts & crafts stalls, and a chance to meet and learn about the communities and their rich histories.
+          </p>
+
+          <div class="facts" role="list" aria-label="Amazing facts">
+            <div class="fact" role="listitem">
+              <strong>Food Diversity</strong>
+              <div class="muted" style="font-weight:500">From smoked meats to bamboo shoots and fermented delicacies — every state has unique flavours.</div>
+            </div>
+            <div class="fact" role="listitem">
+              <strong>Traditional Attire</strong>
+              <div class="muted" style="font-weight:500">Handwoven textiles like Muga silk (Assam) and colourful shawls are central to identity.</div>
+            </div>
+            <div class="fact" role="listitem">
+              <strong>Music & Dance</strong>
+              <div class="muted" style="font-weight:500">Rich folk traditions — Bihu, Naga dances, Manipuri classical and more.</div>
+            </div>
+            <div class="fact" role="listitem">
+              <strong>Indigenous Crafts</strong>
+              <div class="muted" style="font-weight:500">Weaving, bamboo crafts, cane work and handloom products are showcases of local skill.</div>
+            </div>
+          </div>
+
+          <h3 style="margin-top:18px">Why come?</h3>
+          <ul class="bullets muted">
+            <li>Try authentic dishes prepared by community cooks.</li>
+            <li>Live cultural performances & interactive workshops.</li>
+            <li>Stalls with handcrafted goods — perfect for gifting.</li>
+          </ul>
+
+          <p class="muted" style="margin-top:12px;font-size:14px">
+            If you want to participate (stall/volunteer/performance), register using the registration page. We welcome students, staff and guests.
+          </p>
+        </div>
+      </section>
+
+      <aside class="side">
+        <div class="card event-meta">
+          <div class="meta-row"><strong>Date</strong><span class="muted">TBD</span></div>
+          <div class="meta-row"><strong>Venue</strong><span class="muted">IIT Patna — Open Grounds / Food Pavilion</span></div>
+          <div class="meta-row"><strong>Organiser</strong><span class="muted">Student Cultural Board, IIT Patna</span></div>
+          <a class="cta-btn" href="#register-page" onclick="showPage('register-page')" aria-label="Register for the event">Register Now</a>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <h4 style="margin:0 0 8px 0">Quick Links</h4>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <a href="#register-page" onclick="showPage('register-page')">Registration</a>
+            <a href="#program">Proposed Program</a>
+            <a href="#contact">Contact Organisers</a>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div>© <strong>IIT Patna</strong> · North East Feast</div>
+      <div class="muted">For questions: cultural@iitp.ac.in</div>
+    </footer>
+  </div>
+
+  <div id="register-page" class="page-hidden" style="padding:20px 0;">
+    <div class="reg-page-wrapper" role="main">
+      <header class="reg-header">
+        <div>
+          <a href="#index-page" onclick="showPage('index-page')" aria-label="back to home">← Home</a>
+        </div>
+        <div>
+          <h2>Registration — North East Feast</h2>
+        </div>
+      </header>
+
+      <p class="note">
+        Fill out the form below to register as an attendee, performer, vendor or volunteer. Required fields are marked *.
+      </p>
+
+      <form id="regForm" novalidate>
+        <div>
+          <label for="name">Full name *</label>
+          <input id="name" name="name" type="text" required placeholder="Your full name" />
+        </div>
+
+        <div>
+          <label for="role">I am registering as *</label>
+          <select id="role" name="role" required>
+            <option value="">Select role</option>
+            <option>Attendee</option>
+            <option>Performer</option>
+            <option>Vendor / Stall</option>
+            <option>Volunteer</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="email">Email *</label>
+          <input id="email" name="email" type="email" required placeholder="name@example.com" />
+        </div>
+
+        <div>
+          <label for="phone">Phone *</label>
+          <input id="phone" name="phone" type="tel" pattern="[0-9+ ]{7,20}" required placeholder="+91 98XXXXXXXX" />
+        </div>
+
+        <div>
+          <label for="college">College / Organisation</label>
+          <input id="college" name="college" type="text" placeholder="IIT Patna / Other" />
+        </div>
+
+        <div>
+          <label for="state">State (where you're from)</label>
+          <select id="state" name="state">
+            <option value="">Select (optional)</option>
+            <option>Assam</option>
+            <option>Arunachal Pradesh</option>
+            <option>Manipur</option>
+            <option>Meghalaya</option>
+            <option>Mizoram</option>
+            <option>Nagaland</option>
+            <option>Sikkim</option>
+            <option>Tripura</option>
+          </select>
+        </div>
+
+        <div class="full">
+          <label for="notes">Any special requests / food preferences</label>
+          <textarea id="notes" name="notes" placeholder="E.g. vegetarian, stall details, performance description..."></textarea>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:8px">
+          <input id="consent" name="consent" type="checkbox" required />
+          <label for="consent" style="margin:0;font-weight:700">I agree to be contacted regarding the event *</label>
+        </div>
+
+        <div class="full actions" style="margin-top:8px">
+          <button type="button" class="ghost" id="downloadBtn">Download Registrations (CSV)</button>
+          <button type="submit" class="primary">Submit Registration</button>
+        </div>
+      </form>
+
+      <div id="success" class="success" role="status" aria-live="polite">
+        Thank you! Your registration has been recorded locally in your browser. You can download the CSV or submit more entries.
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    // --- Page Switching Logic ---
+    function showPage(pageId) {
+      document.getElementById('index-page').classList.add('page-hidden');
+      document.getElementById('register-page').classList.add('page-hidden');
+      document.getElementById(pageId).classList.remove('page-hidden');
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    // Initialize to show the home page
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check the URL hash to see if we should start on the register page
+      if (window.location.hash === '#register-page') {
+        showPage('register-page');
+      } else {
+        showPage('index-page');
+      }
+    });
+
+    // --- Simple client-side registration management (no server) ---
+    (function(){
+      const form = document.getElementById('regForm');
+      const success = document.getElementById('success');
+      const downloadBtn = document.getElementById('downloadBtn');
+
+      // Key used in localStorage
+      const STORAGE_KEY = 'nefeast_registrations_v1';
+
+      function loadRegs(){
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : [];
+        } catch(e) {
+          console.error('loadRegs error', e);
+          return [];
+        }
+      }
+
+      function saveRegs(items){
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(items || []));
+        } catch(e){ console.error('save error', e) }
+      }
+
+      function validateEmail(email){
+        // simple validation
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      function toCSV(rows){
+        // rows: array of objects
+        if(!rows || !rows.length) return '';
+        const keys = Object.keys(rows[0]);
+        const escape = v => {
+          if(v==null) return '';
+          const s = String(v).replace(/"/g,'""');
+          return /[",\n]/.test(s) ? `"${s}"` : s;
+        };
+        const lines = [keys.map(escape).join(',')];
+        for(const r of rows){
+          lines.push(keys.map(k=>escape(r[k])).join(','));
+        }
+        return lines.join("\n");
+      }
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        // gather
+        const data = {
+          timestamp: new Date().toISOString(),
+          name: form.name.value.trim(),
+          role: form.role.value,
+          email: form.email.value.trim(),
+          phone: form.phone.value.trim(),
+          college: form.college.value.trim(),
+          state: form.state.value,
+          notes: form.notes.value.trim()
+        };
+
+        // validation
+        if(!data.name){ alert('Please enter your name'); form.name.focus(); return; }
+        if(!data.role){ alert('Please select a role'); form.role.focus(); return; }
+        if(!data.email || !validateEmail(data.email)){ alert('Please enter a valid email'); form.email.focus(); return; }
+        if(!data.phone){ alert('Please enter your phone number'); form.phone.focus(); return; }
+        if(!form.consent.checked){ alert('Please agree to be contacted'); form.consent.focus(); return; }
+
+        // save locally
+        const regs = loadRegs();
+        regs.push(data);
+        saveRegs(regs);
+
+        // show success message
+        success.style.display = 'block';
+        success.textContent = 'Thanks, registration saved locally. You can download all registrations as CSV.';
+        form.reset();
+        window.scrollTo({top:0,behavior:'smooth'});
+      });
+
+      downloadBtn.addEventListener('click', function(){
+        const regs = loadRegs();
+        if(!regs.length){
+          alert('No registrations available locally yet.');
+          return;
+        }
+        const csv = toCSV(regs);
+        const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'nefeast_registrations.csv';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      });
+
+      // Expose small helper for debugging: window._regs()
+      window._regs = {
+        list: loadRegs,
+        clear: function(){ localStorage.removeItem(STORAGE_KEY); alert('Local registrations cleared'); }
+      };
+    })();
+  </script>
+</body>
+</html>
